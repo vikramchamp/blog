@@ -183,8 +183,13 @@ Here is the Final Visualization at the end of the Makeover process:
 ![Final Visualization](data\Final Visualization.png)
 
 
-# Observations revealed by the Visualization
+# Key Observations revealed by the Visualization
 
+1. For the labor force aged 24-52, the Labor Force Participation rate has increased through 2009 to 2019, but their population is decreasing as a portion of the total labor force. This is most likely due to the slower influx of residents with ages 15-24 into the 24-52 group versus the outgoing population into the "55 and above" bracket.
+
+2. The percentage of the labor force aged 55 and above has been steadily increasing from approximately 40% in 2009 to 50% in 2019. This is a clear indicator of an aging population.
+
+3. The percentage of the labor force aged 15 to 24 has generally been slowly decreasing from ~9% in 2009 to below 8% in 2019. This points to a slowdown in the birth rate in Singapore. This would also explain the flat LFPR trend of this age group.
 
 # References
 
