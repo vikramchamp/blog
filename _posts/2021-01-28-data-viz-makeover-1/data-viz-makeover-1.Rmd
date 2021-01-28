@@ -188,9 +188,10 @@ Here is the Final Visualization at the end of the Makeover process:
 
 # References
 
-- Tableau Help Guide
-- Fundamentals of Visualization e-book
-- Youtube guide for Tables - https://www.youtube.com/watch?v=a0rM8wAp4U0
-- Data source
+1. Tableau Help Guide - https://www.tableau.com/support/help
+2. Fundamentals of Visualization - https://clauswilke.com/dataviz/
+3. YouTube guide for Tables - https://www.youtube.com/watch?v=a0rM8wAp4U0
+4. Table 5: RESIDENT LABOUR FORCE PARTICIPATION RATE BY AGE AND SEX, 2009 - 2019 (JUNE) - https://stats.mom.gov.sg/Pages/Labour-Force-Tables2019.aspx
+5. Table 7: RESIDENT LABOUR FORCE PARTICIPATION RATE BY AGE AND SEX, 2009 - 2019 (JUNE) - https://stats.mom.gov.sg/Pages/Labour-Force-Tables2019.aspx
 
 
