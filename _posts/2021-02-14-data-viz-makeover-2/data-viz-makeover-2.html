@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Data Viz Makeover 2</title>
+
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-02-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-02-14"/>
+  <meta name="article:author" content="Vikram Shashank Dandekar"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Data Viz Makeover 2"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Data Viz Makeover 2"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Data Viz Makeover 2"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Vikram Shashank Dandekar"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/vikram-dandekar-aab7aa31"]}]}]},{"type":"character","attributes":{},"value":["02-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/Aliases.PNG","data/Aliases2.PNG","data/Calculatedfield_Nav.PNG","data/Count_Neg_Vac_1.PNG","data/Customsplit_1.PNG","data/Customsplit_3.PNG","data/Customsplit_4.PNG","data/Customsplit_5.PNG","data/Drag1.PNG","data/Filternull_vac1.PNG","data/Finaldashboard.PNG","data/Gantt_Percent_Vac_1.PNG","data/Gantt_Start_Vac_1.PNG","data/Initial Viz.png","data/New_Union.PNG","data/New_Union2.PNG","data/Number of Records.PNG","data/Percentage.PNG","data/Remove_aus.PNG","data/Sketch2.jpg","data/Total Count.PNG","data/Total_count_neg_vac_1.PNG","data/Viz1.PNG","data/Viz10.PNG","data/Viz11.PNG","data/Viz12.PNG","data/Viz13.PNG","data/Viz14.PNG","data/Viz15.PNG","data/Viz16.PNG","data/Viz17.PNG","data/Viz18.PNG","data/Viz19.PNG","data/Viz2.PNG","data/Viz20.PNG","data/Viz21.PNG","data/Viz22.PNG","data/Viz23.PNG","data/Viz24.PNG","data/Viz25.PNG","data/Viz26.PNG","data/Viz27.PNG","data/Viz28.PNG","data/Viz3.PNG","data/Viz4.PNG","data/Viz5.PNG","data/Viz6.PNG","data/Viz7.PNG","data/Viz8.PNG","data/Viz9.PNG","data-viz-makeover-2_files/anchor-4.2.2/anchor.min.js","data-viz-makeover-2_files/bowser-1.9.3/bowser.min.js","data-viz-makeover-2_files/distill-2.2.21/template.v2.js","data-viz-makeover-2_files/header-attrs-2.6/header-attrs.js","data-viz-makeover-2_files/jquery-1.11.3/jquery.min.js","data-viz-makeover-2_files/popper-2.6.0/popper.min.js","data-viz-makeover-2_files/tippy-6.2.7/tippy-bundle.umd.min.js","data-viz-makeover-2_files/tippy-6.2.7/tippy-light-border.css","data-viz-makeover-2_files/tippy-6.2.7/tippy.css","data-viz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js","data-viz-makeover-2_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="data-viz-makeover-2_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="data-viz-makeover-2_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="data-viz-makeover-2_files/popper-2.6.0/popper.min.js"></script>
+  <link href="data-viz-makeover-2_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="data-viz-makeover-2_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="data-viz-makeover-2_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="data-viz-makeover-2_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="data-viz-makeover-2_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="data-viz-makeover-2_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="data-viz-makeover-2_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Data Viz Makeover 2","authors":[{"author":"Vikram Shashank Dandekar","authorURL":"https://www.linkedin.com/in/vikram-dandekar-aab7aa31","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-14T00:00:00.000+08:00","citationText":"Dandekar, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Data Viz Makeover 2</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+<div class="d-byline">
+  Vikram Shashank Dandekar <a href="https://www.linkedin.com/in/vikram-dandekar-aab7aa31" class="uri">https://www.linkedin.com/in/vikram-dandekar-aab7aa31</a> 
+  
+<br/>02-14-2021
+</div>
+
+<div class="d-article">
+<h1 id="initial-visualization">Initial Visualization</h1>
+<p><img src="data/Initial%20Viz.png" /></p>
+<h1 id="critiquing-the-initial-visualization">Critiquing the Initial Visualization</h1>
+<h3 id="clarity">Clarity</h3>
+<ol type="1">
+<li><p>The titles of the charts are not well-worded. Firstly, the chart is intended to show the willingness of the countries’ residents to take the Covid-19 vaccination. This can easily be misunderstood, because the title “Which country is more pro-vaccine?” could be easily misconstrued as an indication of the political landscape in the country instead of the sentiment of the people. Secondly, this is a result of polling a sample of the countries’ populations. Therefore the title should NOT be driving the message that these are the results for the entire country. This applies to both titles.</p></li>
+<li><p>The chart on the right is providing a subset of information that already exists in the first chart on the left. However, due to how the countries have been sorted differently in both charts, this is not apparent. Therefore in its current state, the chart on the right is essentially redundant if the stacked bar chart (left) was neatly sorted in descending order of “Strongly Agree” proportions with a clear legend.</p></li>
+<li><p>The uncertainty of the data is not addressed in the visualization. These study results are based off a sample of each country’s population, therefore, there must be a a confidence interval shown to the reader for each point estimate per country.</p></li>
+<li><p>The stacked bar chart on the left is not clearly showing the disparity between those who are willing to take the Covid vaccine versus those who are not, as it is just stacking the proportion of survey scores 1 through 5.</p></li>
+</ol>
+<h3 id="aesthetics">Aesthetics</h3>
+<ol type="1">
+<li><p>Color usage in the stacked bar chart is not appropriate. Using a variety of colors to represent the differences between “Strongly agree” all the way to “Strongly Disagree” does not help much visually.</p></li>
+<li><p>The stacked bar chart is not sorted well. It is challenging to the eyes to pick out a trend quickly.</p></li>
+<li><p>The tick marks on the x-axis are too light and almost invisible.</p></li>
+</ol>
+<h2 id="suggestions-for-graphical-presentation">Suggestions for Graphical Presentation</h2>
+<p>The following table summarizes the key changes recommended to the initial visualization:</p>
+<table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 33%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Aspect</th>
+<th style="text-align: center;">Critique</th>
+<th style="text-align: center;">Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Clarity</td>
+<td style="text-align: center;">The titles of the charts are not well-worded.</td>
+<td style="text-align: center;">Either a comprehensive lead-in statement should be provided, or a well-worded title should be used that captures the essence of the visualization</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Clarity</td>
+<td style="text-align: center;">The chart on the right is providing a subset of information that already exists in the first chart on the left.</td>
+<td style="text-align: center;">If two charts are to be used, they should each serve a unique purpose which when combine, enhances the audience’s understanding of the visualization. Recommendation here is to use a combaination of a Likert Chart and an Error Bar chart.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Clarity</td>
+<td style="text-align: center;">The uncertainty of the data is not addressed in the visualization.</td>
+<td style="text-align: center;">An Error Bar chart can address this gap in clarity by showing the confidence interval ranges.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Clarity</td>
+<td style="text-align: center;">The stacked bar chart on the left is not clearly showing the disparity between those who are willing to take the Covid vaccine versus those who are not.</td>
+<td style="text-align: center;">A Likert Scale would be a better choice to visually represent the skew between willing and unwilling participants of the Covid vaccine.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Aesthetics</td>
+<td style="text-align: center;">Color usage in the stacked bar chart is not appropriate.</td>
+<td style="text-align: center;">Here, using a sequential color scale would be better, regardless of whether it is single hue or multi hue.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Aesthetics</td>
+<td style="text-align: center;">The stacked bar chart is not sorted well.</td>
+<td style="text-align: center;">The chart should be sorted either in ascending or descending order of score proportions per country.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Aesthetics</td>
+<td style="text-align: center;">The tick marks on the x-axis are too light and almost invisible.</td>
+<td style="text-align: center;">A better choice of opacity level should be employed when it comes to tick marks that can visually aid the readers of the chart.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sketch-of-proposed-visualization">Sketch of proposed visualization</h2>
+<p><img src="data/Sketch2.jpg" /></p>
+<h3 id="key-characteristics-of-proposed-visualization">Key characteristics of proposed visualization:</h3>
+<ul>
+<li>Using the Likert Scale will help us to visualize clearly between positive, negative and neutral sentiments of the public.</li>
+<li>Using an error bar chart helps us to see the range in which the proportion of “strongly agree” responses are likely to swing within the total population, using a confidence interval of 95%.</li>
+<li>Having selection and slider fields for factors such as age, employment status and household size will enable the audience to interact with the dashboard to have a customized view of the scope of data that they would like to see.</li>
+</ul>
+<h1 id="preparing-the-proposed-visualization-with-tableau">Preparing the Proposed Visualization with Tableau</h1>
+<h2 id="importing-data-into-tableau-data-preparation">Importing Data into Tableau &amp; Data Preparation</h2>
+<ol type="1">
+<li><p>An important observation of the raw data is that there are many blank cells in the columns related to the key survey question “If a Covid-19 vaccine were made available to me this week, I would definitely get it”. This holds true for the remaining survey questions as well. Therefore, it would be necessary to exclude these data points eventually in the visualization.</p></li>
+<li><p>A quick look at the raw data shows us that there are many other countries’ data also available in the data download provided. To maintain consistency in the scope of this makeover, we will keep to the 14 countries in the original visualization. Thus, the remaining countries’ data is removed from the folder.</p></li>
+<li><p>Now, we drag &amp; drop the first country file in the data folder(australia.csv) into Tableau. We will notice that Tableau automatically recognizes the rest of the country files in the folder.</p></li>
+</ol>
+<figure>
+<img src="data/Drag1.PNG" alt="Drag and drop first country file into Tableau" /><figcaption aria-hidden="true">Drag and drop first country file into Tableau</figcaption>
+</figure>
+<ol start="4" type="1">
+<li>As each country’s data is in separate csv files, it is essential to first combine them into one large dataset. To do so, we will start by removing the australia.csv that is by default placed on the logical table:</li>
+</ol>
+<figure>
+<img src="data/Remove_aus.PNG" alt="Removing australia.csv from logical table first" /><figcaption aria-hidden="true">Removing australia.csv from logical table first</figcaption>
+</figure>
+<p>5.Drag and drop the “New Union” option into the logical platform &amp; we will see a box opened for customized unions:</p>
+<figure>
+<img src="data/New_Union.PNG" alt="Creating a Custom new Union" /><figcaption aria-hidden="true">Creating a Custom new Union</figcaption>
+</figure>
+<ol start="6" type="1">
+<li>Drag and drop all 14 countries into the Union box and press “OK”:</li>
+</ol>
+<figure>
+<img src="data/New_Union2.PNG" alt="Add all countries into Union" /><figcaption aria-hidden="true">Add all countries into Union</figcaption>
+</figure>
+<ol start="7" type="1">
+<li>Now we are able to see the dataset, and it is time to make a few modifications so that we can use the data conveniently in a visualization:</li>
+</ol>
+<ul>
+<li>As we will be focusing on the vac_1 column, lets start here. First, we will use a filter to remove all null fields. In the check box the follows after pressing “OK”, select all responses except “Null”.</li>
+</ul>
+<figure>
+<img src="data/Filternull_vac1.PNG" alt="Filtering away null values in survey responses" /><figcaption aria-hidden="true">Filtering away null values in survey responses</figcaption>
+</figure>
+<ul>
+<li>Notice that only survey responses 1 &amp; 5 have text tagged to them. We need to standardize this column to a number. To do this we use a custom split to use the hyphen “-” as separator:</li>
+</ul>
+<figure>
+<img src="data/Customsplit_1.PNG" alt="Using Custom Split function" /><figcaption aria-hidden="true">Using Custom Split function</figcaption>
+</figure>
+<ul>
+<li>We will notice now that Response 5 has not been split successfully while response 1 has:</li>
+</ul>
+<figure>
+<img src="data/Customsplit_3.PNG" alt="Custom Split only partially successful" /><figcaption aria-hidden="true">Custom Split only partially successful</figcaption>
+</figure>
+<ul>
+<li>This is because the separator is actually different for Responses 1 &amp; 5. One is a hyphen and the other is a subtract sign. Repeat the Custom split on the new column, using same steps as above to take care of Response 5, and we should now have a column that has the text removed.</li>
+<li>Following this, rename the column to “vac_1_final” and convert the data type to Number(whole). We will now use this for all further work on the visualization:</li>
+</ul>
+<figure>
+<img src="data/Customsplit_4.PNG" alt="Second Custom Split solves the problem" /><figcaption aria-hidden="true">Second Custom Split solves the problem</figcaption>
+</figure>
+<figure>
+<img src="data/Aliases.PNG" alt="Use Aliases to assign qualitative score" /><figcaption aria-hidden="true">Use Aliases to assign qualitative score</figcaption>
+</figure>
+<ul>
+<li>Rename the “table_name” column to "Country, and use Aliases option to type the country name, so that we get a clean look later in the visualization:</li>
+</ul>
+<figure>
+<img src="data/Aliases2.PNG" alt="Cleaning the country names" /><figcaption aria-hidden="true">Cleaning the country names</figcaption>
+</figure>
+<ul>
+<li>We are now done with basic data preparation. It is time to move on to creating several calculated fields that we will require for both the Likert Chart as well as the Error Bar Chart.</li>
+</ul>
+<h2 id="creation-of-calcuated-fields-for-likert-chart">Creation of Calcuated Fields for Likert Chart</h2>
+<p>There are several calculated fields we need to create. For all calculated fields, we go to the Sheet Page –&gt; “Analysis” –&gt; “Create Calculated Field”, and then type in the formulas:</p>
+<figure>
+<img src="data/Calculatedfield_Nav.PNG" alt="Getting to the Calculated Field Input box" /><figcaption aria-hidden="true">Getting to the Calculated Field Input box</figcaption>
+</figure>
+<ol type="1">
+<li>Number of Records - This will essentially mark each data row with a value of 1, which will help us greatly when counting:</li>
+</ol>
+<figure>
+<img src="data/Number%20of%20Records.PNG" alt="Number of Records field" /><figcaption aria-hidden="true">Number of Records field</figcaption>
+</figure>
+<ol start="2" type="1">
+<li>Total Count - This helps us to sum up the Number of Records across a table:</li>
+</ol>
+<figure>
+<img src="data/Total%20Count.PNG" alt="Total Count field" /><figcaption aria-hidden="true">Total Count field</figcaption>
+</figure>
+<ol start="3" type="1">
+<li>Count_Neg_Vac_1 - This is for us to maintain a count of the scores that we consider negative. The logic is to apply a count of 1 to scores “4” and “5”, while assigning a value of 0.5 to the neutral score 3, so that it can be evenly spread across the 0 score of the Likert Scale:</li>
+</ol>
+<figure>
+<img src="data/Count_Neg_Vac_1.PNG" alt="Count_Neg__Vac_1" /><figcaption aria-hidden="true">Count_Neg__Vac_1</figcaption>
+</figure>
+<ol start="4" type="1">
+<li>Total_Count_Negative_Vac_1 - This field is used to count the total number of scores we consider negative.</li>
+</ol>
+<figure>
+<img src="data/Total_count_neg_vac_1.PNG" alt="Total Count of Negative Vac_1" /><figcaption aria-hidden="true">Total Count of Negative Vac_1</figcaption>
+</figure>
+<ol start="5" type="1">
+<li>Percentage - This is used to calculate the contributing percentage of each survey response per country.</li>
+</ol>
+<figure>
+<img src="data/Percentage.PNG" alt="Percentage field" /><figcaption aria-hidden="true">Percentage field</figcaption>
+</figure>
+<ol start="6" type="1">
+<li>Gantt_Start_Vac_1 - This calculation determines the starting points on the Likert Scale</li>
+</ol>
+<figure>
+<img src="data/Gantt_Start_Vac_1.PNG" alt="Gantt Start field" /><figcaption aria-hidden="true">Gantt Start field</figcaption>
+</figure>
+<ol start="7" type="1">
+<li>Gantt_Percent_Vac_1 - This is a formula to calculate the start/end points on the scale to show the next response results.</li>
+</ol>
+<figure>
+<img src="data/Gantt_Percent_Vac_1.PNG" alt="Gantt Percent field" /><figcaption aria-hidden="true">Gantt Percent field</figcaption>
+</figure>
+<p>We are now ready to create the Likert Chart.</p>
+<h2 id="creating-the-likert-chart-visualization">Creating the Likert Chart visualization</h2>
+<ol type="1">
+<li>Drag the “Gantt_Percent_Vac_1” field into Columns and the “Country” field into Rows, followed by adding “vac_1_final” to the detail level as shown here:</li>
+</ol>
+<p><img src="data/Viz1.PNG" /></p>
+<ol start="2" type="1">
+<li>Change the type of chart to “Gantt Bar”:</li>
+</ol>
+<p><img src="data/Viz2.PNG" /></p>
+<ol start="3" type="1">
+<li>Change the method of computation of the “Gantt_Percent_Vac_1” field to use “vac_1_final” instead of the original “Table(down)” setting.</li>
+</ol>
+<p><img src="data/Viz3.PNG" /></p>
+<ol start="4" type="1">
+<li>Drag in the “Percentage” field into “Size” option and the “vac_1_final” field into “Color” option:</li>
+</ol>
+<p><img src="data/Viz4.PNG" /></p>
+<ol start="5" type="1">
+<li>Sort Country in Descending order of Gantt_Percent_Vac_1:</li>
+</ol>
+<p><img src="data/Viz5.PNG" /></p>
+<ol start="6" type="1">
+<li>Adjust the color of the Response bars from dark blue for “Strongly Agree” to dark red for “Strongly Disagree”, with “Neutral” shown in grey.</li>
+</ol>
+<p><img src="data/Viz6.PNG" /></p>
+<ol start="7" type="1">
+<li>Add in filters:</li>
+</ol>
+<ul>
+<li>gender (single value list)</li>
+<li>age (slider)</li>
+<li>household size (single value slider)</li>
+<li>household children (slider)</li>
+<li>employment status (single value drop down)</li>
+</ul>
+<p><img src="data/Viz7.PNG" /></p>
+<ol start="8" type="1">
+<li>Adjust the window fit to “Entire View”, increase the font size of the Axis Labels and Values to 15 and Bold. Finally, remove the title:</li>
+</ol>
+<p><img src="data/Viz8.PNG" /></p>
+<p>We have now completed the Likert Chart. Now, we move to the second part of the visualization that we are creating, which is the Error Bar Chart.</p>
+<h2 id="creation-of-calculated-fields-for-error-bar-chart">Creation of Calculated Fields for Error Bar Chart</h2>
+<p>To show the confidence intervals in an error bar chart, there are several calculated fields we need to create. For all calculated fields, we go to the Sheet Page –&gt; “Analysis” –&gt; “Create Calculated Field”, and then type in the formulas:</p>
+<ol type="1">
+<li>Z_95% - We will be creating 95% Confidence Intervals in this visualization, therefore we need to store the Z value for 95% C.I:</li>
+</ol>
+<p><img src="data/Viz9.PNG" /></p>
+<ol start="2" type="1">
+<li>Strong_Agree - We need to create a field to identify which rows in the data set we are taking for the error bar, in this case these are all the responses for “Strongly Agree” across all countries, therefore we need to mark all vac_1_final entries of value “1”:</li>
+</ol>
+<p><img src="data/Viz10.PNG" /></p>
+<ol start="3" type="1">
+<li>Prop_Strong_Agree - Next, we create a proportion value for earlier calculated Strong_Agree value:</li>
+</ol>
+<p><img src="data/Viz11.PNG" /></p>
+<ol start="4" type="1">
+<li>Prop_Strong_Agree_SE - This is to calculate the standard error:</li>
+</ol>
+<p><img src="data/Viz12.PNG" /></p>
+<ol start="5" type="1">
+<li>Margin_of_error_95% - This is to calculate the margin of error for a 95% C.I.</li>
+</ol>
+<p><img src="data/Viz13.PNG" /></p>
+<ol start="6" type="1">
+<li>LowerLimit_95% and UpperLimit_95% - Finally, we calculate the Upper and Lower Limits of the C.I</li>
+</ol>
+<p><img src="data/Viz14.PNG" /> <img src="data/Viz15.PNG" /></p>
+<p>We are now ready to create the Error Bar Chart.</p>
+<h2 id="creating-the-error-bar-chart-visualization">Creating the Error Bar Chart visualization</h2>
+<ol type="1">
+<li>Drag “Prop_Strong_Agree” field to Columns and “Country” to Rows:</li>
+</ol>
+<p><img src="data/Viz16.PNG" /></p>
+<ol start="2" type="1">
+<li>Drag “Measure Values” to Columns and remove all except UpperLimit_95% and LowerLimit_95%:</li>
+</ol>
+<p><img src="data/Viz17.PNG" /></p>
+<ol start="3" type="1">
+<li>Convert to “Dual Axis” View &amp; Synchronize the Axes:</li>
+</ol>
+<p><img src="data/Viz18.PNG" /></p>
+<p><img src="data/Viz19.PNG" /></p>
+<ol start="4" type="1">
+<li>Change “Measure Values” mark to Line, and use the “Path” option. We can now see the error bars:</li>
+</ol>
+<p><img src="data/Viz20.PNG" /></p>
+<ol start="5" type="1">
+<li>Switch the “Measure Names” under “AGG_Prop_Strong_Agree” mark to Color. Then, adjust the thickness of the line and the size of the circle for both “AGG_Prop_Strong_Agree” and “Measure Values”marks:</li>
+</ol>
+<p><img src="data/Viz21.PNG" /></p>
+<ol start="6" type="1">
+<li>Similar to the Likert Chart, adjust the window fit to “Entire View”, increase the font size of the Axis Labels and Values to 15 and Bold. Here, we also hide the second axis at the top of the chart. Finally, remove the title and Sort the error bars by descending values by country:</li>
+</ol>
+<p><img src="data/Viz22.PNG" /></p>
+<ol start="7" type="1">
+<li>Add in filters:</li>
+</ol>
+<ul>
+<li>gender (single value list)</li>
+<li>age (slider)</li>
+<li>household size (single value slider)</li>
+<li>household children (slider)</li>
+<li>employment status (single value drop down)</li>
+</ul>
+<p><img src="data/Viz23.PNG" /></p>
+<h2 id="creating-the-dashboard">Creating the Dashboard</h2>
+<p>It is time to create an interactive Dashboard that combines both visualizations that we have created.</p>
+<ol type="1">
+<li>Start a new Dashboard tab, set the Size to “Automatic” and drag in both charts into the workspace:</li>
+</ol>
+<p><img src="data/Viz24.PNG" /></p>
+<ol start="2" type="1">
+<li>Click on “Show Dashboard Title” at the bottom left, and add the title “Willingness of Public to take COVID-19 Vaccination”</li>
+</ol>
+<p><img src="data/Viz25.PNG" /></p>
+<ol start="3" type="1">
+<li>Convert the Likert legend to “Floating” and drag it to a blank area in the Likert Chart so that it is visually easier for the reader to compare.</li>
+</ol>
+<p><img src="data/Viz26.PNG" /></p>
+<p><img src="data/Viz27.PNG" /></p>
+<ol start="4" type="1">
+<li>Synchronize each filter to both charts by applying to all Worksheets:</li>
+</ol>
+<p><img src="data/Viz28.PNG" /></p>
+<ol start="5" type="1">
+<li>Make a final few touch ups:</li>
+</ol>
+<ul>
+<li>Adjust “vac_1_final” data column name to “Response”</li>
+<li>Give x-axes of both chart relevant titles</li>
+<li>Clean title names for all filters by adjust the Data source column names - household size, age, gender, employment status, household children</li>
+</ul>
+<h1 id="final-visualization">Final Visualization</h1>
+<p>The final interactive dashboard looks like this:</p>
+<figure>
+<img src="data/Finaldashboard.PNG" alt="Completed Interactive Visualization" /><figcaption aria-hidden="true">Completed Interactive Visualization</figcaption>
+</figure>
+<h1 id="key-observations-revealed-by-the-visualization">Key Observations revealed by the Visualization</h1>
+<ol type="1">
+<li><p>The willingness of the Singapore population to take the COVID vaccine is very low as compared to the European countries. This is interesting because even though Singapore is one of the countries that has managed the COVID situation very well, and has been enjoying a stable “Phase 3” environment throughout the period of this survey, very few Singaporean residents seem to be open to the COVID-19 vaccine, even if they were given an opportunity to take it. This points to a lack of trust in the effectiveness or even the safety factor of taking the vaccination. From another perspective, this is also not surprising, since life in Singapore is not far from the pre-COVID normal, with only the basic safety &amp; distancing measures that need to be observed. Hence, Singaporeans probably do not feel the urgency to get themselves protected with the vaccination even if they had the option.</p></li>
+<li><p>Between the Male &amp; Female Gender, every country’s Females responded with a lower proportion to “Strongly Agree” versus Males. This could have a couple of reasons behind. Firstly, it is likely that there are a larger number of females who are homemakers compared to Males, and feel less strongly about the need for a vaccination if more of their time is spent at home. Secondly, we could be looking at a general trend that Males tend to be less risk-averse to taking this new vaccination.’</p></li>
+<li><p>Individuals between the ages of 18 to 50 have a much lower willingness to take the vaccine versus those between 51 and 99. This is most likely due to the general sentiment that there is a much lower risk of fatal consequences for a younger person infected with COVID. While we do see special circumstances where COVID paired with other complications leads to a quick death for a considerable number of people regardless of the age group, this has happened within a much smaller proportion of the global population.</p></li>
+</ol>
+<h1 id="references">References</h1>
+<ol type="1">
+<li>Tableau Help Guide - <a href="https://www.tableau.com/support/help" class="uri">https://www.tableau.com/support/help</a></li>
+<li>Fundamentals of Visualization - <a href="https://clauswilke.com/dataviz/" class="uri">https://clauswilke.com/dataviz/</a></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
