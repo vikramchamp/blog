@@ -319,37 +319,43 @@ gghistostats(data = beacon, x = balance)
 
 This view of density plot & histogram per station is not very helpful to the user, as compared to the station comparison visualizations above. Therefore, this is not recommended to be used in the final application.
 
+## Reflections on Visualization methods
 
-## Reflections on visualization methods
+For an application to allow its users to interact fully with the data at all levels, it is essential that there are features that enable both macro and micro analysis. This will ensure that the application caters to all types of users, not only those who want to get a sense of the big picture, but also individuals who need to deep-dive into the data.
 
+There is also the realization that it is not always necessary to have an interactive visualization. The key point is that the visualization should serve it's purpose, even if it is a static view.
 
+After an exploration of the visualization methods, the recommendations for features to be used in an application are as follows:
+
+- From a macro standpoint, it will make sense to have a visualization that shows the overall distribution of the data, with some selections available up to choices of district.
+
+- It is recommended to have comparison features between districts and more importantly stations. This provides a good second-level look into the balance data.
+
+- Finally, it is crucial to have a feature that looks at the lowest detail of the balance data - at days/hours level if required. This is where an interactive plot would be helpful for the user, as demonstrated earlier with the slider feature as an addition.
 
 ## Sketch of Proposed Visualization
 
+![](data/Sketch.jpg)
 
+## Future Work
 
+Looking ahead, more work could be done on exploring the relationship of the balance to the days of the week to identify some trends and enable Bluebikes as a company to further optimize their operations. As this project is only focusing on 1 month of data, perhaps the application could be further enhanced to allow users to upload any month's data set and perform the same balance analysis. 
 
 
 ## References
 
-http://hselab.org/use-r-to-explore-station-balance-in-bike-share-systems-and-learn-a-little-dplyr-programming.html
+1. http://hselab.org/use-r-to-explore-station-balance-in-bike-share-systems-and-learn-a-little-dplyr-programming.html
 
-https://nycdatascience.com/blog/student-works/data-visualization-and-analysis-of-nice-ride/
+2. https://nycdatascience.com/blog/student-works/data-visualization-and-analysis-of-nice-ride/
 
-Dplyr reference site
+3. https://ggplot2.tidyverse.org/reference/geom_qq.html
 
-Tidyverse reference site
+4. https://data.library.virginia.edu/understanding-q-q-plots/
 
-Infer package links
+5. https://mse.redwoods.edu/darnold/math15/spring2013/R/Activities/AssessingNormality1.html
 
-https://ggplot2.tidyverse.org/reference/geom_qq.html
+6. https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#74
 
-https://data.library.virginia.edu/understanding-q-q-plots/
+7. https://plotly-r.com/improving-ggplotly.html
 
-https://mse.redwoods.edu/darnold/math15/spring2013/R/Activities/AssessingNormality1.html
-
-https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#74
-
-https://plotly-r.com/improving-ggplotly.html
-
-https://rpubs.com/aaronsc32/games-howell-test
+8. https://rpubs.com/aaronsc32/games-howell-test
