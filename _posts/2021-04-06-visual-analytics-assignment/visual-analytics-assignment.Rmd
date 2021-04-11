@@ -1,0 +1,355 @@
+---
+title: "Visual Analytics Assignment"
+description: |
+  Bluebikes - Enabling Optimization of Bike Sharing Operations
+author:
+  - name: Vikram Shashank Dandekar
+    url: https://www.linkedin.com/in/vikram-dandekar-aab7aa31
+date: 04-06-2021
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(knitr::opts_chunk$set(fig.retina = 3,
+                      echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE))
+```
+
+## Overview
+
+### Purpose of Visual Analytics Assignment
+
+The objective of this assignment is to explore the methods of visualization that can be applied to the trip data of Blue Bikes, which is a public share bike system in Boston. The focus of this assignment is on analyzing the flow of bikes moving in and out of the numerous stations that have been set up. More specifically, we would like to look at the balance (deficit or excess) of bikes at the stations. This would eventually link to the Shiny application development of the Visual Analytics Project. 
+
+### Visual Components to be explored
+
+1. Using a full month of data, we would like to visualize the distribution of deficit or excess across all the different stations. Ideally, there would be an option to customize district selection to see how the distribution changes.
+
+2. For a good interactive experience, the application user should be able to compare station to station data for balance. A comparison of at least three stations side by side would be useful.
+
+3. It would be interesting to visualize to the smallest detail, the movement in overall balance of bikes throughout the days and weeks.
+
+Where possible, interactive visualizations are good to have, but they may not be necessary. We will look at this in closer detail.
+
+## Step by Step Data Preparation
+
+### Installing packages
+
+First, we will check for the following packages to see whether they have been installed -  **sf**, **tidyverse**, **lubridate**, **data.table**,  **leaflet**, **plotly**, **leaflet.extras**, **psych**, **ggstatsplot**, **hrbrthemes**, **hms** and **infer**. If not installed, R will go ahead to install these packages before launching them.
+
+```{r warning=FALSE, message=FALSE}
+packages = c('sf', 'data.table','tidyverse','leaflet','leaflet.extras','lubridate', 'infer', 'ggstatsplot', 'hrbrthemes', 'hms', 'plotly', 'psych')
+for (p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+  }
+  library(p,character.only= T )
+}
+```
+
+### Importing the Data
+
+Let us bring in two data sets of Blue Bikes. The first data set, which we will label **trip** is the trip data for the month of January 2020, while the second data set which we will label **station** summarizes the details of all the Blue Bikes stations that are available.
+
+```{r warning=FALSE, message=FALSE}
+trip <- read_csv('data/202001-bluebikes-tripdata.csv')
+station <- read.csv('data/current_bluebikes_stations.csv', skip = 1)
+```
+
+### Data Wrangling & Preparation
+
+Inspecting the structure of the **station** data set:
+
+```{r}
+str(station)
+```
+
+It is noted that the Station name is a factor type. We will need to ensure that the same is true for the **trip** data set, so that when we join the data together, there will be no errors.
+
+Inspecting the structure of the **trip** data set:
+
+```{r}
+str(trip)
+```
+
+It is apparent that some modifications need to be made to the data set to enable a good visualization later:
+
+- Add a column that shows the age of each rider using the birth year column
+- Convert the **starttime** and **stoptime** columns into - Start Date, Stop Date, Start Time, Stop Time
+- Change the **gender** column to show "Female", "Male" or "Prefer not to say" instead of "0", "1" and "2"
+
+```{r}
+
+#Calculating Age from Birth year
+trip$Age <- 2020 - trip$'birth year'
+
+#Modifying Gender data
+trip$gender <- as.factor(recode(trip$gender, '0' = 'Female', '1' = 'Male', '2' = 'Prefer not to say'))
+
+#Separating date and time data
+trip_1 <- trip %>%
+  separate(starttime, into = c("start_date", "start_time"), sep = " ") %>%
+  separate(stoptime, into = c("stop_date", "stop_time"), sep = " ")
+
+#Formatting date and time data types
+trip_1$start_date <- ymd(trip_1$start_date)
+trip_1$stop_date <- ymd(trip_1$stop_date)
+trip_1$start_time <- as_hms(trip_1$start_time)
+trip_1$stop_time <- as_hms(trip_1$stop_time)
+
+#Convert start station name and end station name to factor
+trip_1$`start station name` <- as.factor(trip_1$`start station name`)
+trip_1$`end station name` <- as.factor(trip_1$`end station name`)
+
+```
+
+The processed trip data set file will be saved for use in subsequent analysis
+
+```{r}
+save(trip_1, station, file = "data/station_trip_processed.Rdata")
+
+```
+
+
+```{r}
+date_window_start <- ymd("2020-01-01")
+date_window_stop <- ymd("2020-01-31")
+
+# Unique values of date and station names
+dates <- seq(date_window_start, date_window_stop, by = 'days')
+stations <- station$Name
+
+#Create a full table with all combinations
+date_station <- expand_grid(stations, dates)
+names(date_station) <- c("start station name", "trip_date")
+
+#Count number of trips out and save as table
+num_out_station_date <- trip_1 %>%
+  group_by(`start station name`, start_date) %>%
+  count()
+
+num_out_station_date$start_date = ymd(num_out_station_date$start_date)
+
+#Join the date_station table to the num_out_station_date table
+trips_out <- date_station %>%
+  left_join(num_out_station_date, by = c("start station name" = "start station name", "trip_date" = "start_date"))
+
+#Replacing NA values with zeros
+trips_out$n <- trips_out$n %>% replace_na(0)
+
+#A glimpse at the trips_out table
+head(trips_out)
+
+#Repeating for in-trips, Count number of trips in and save as table
+num_in_station_date <- trip_1 %>%
+  group_by(`end station name`, stop_date) %>%
+  count()
+
+num_in_station_date$stop_date = ymd(num_in_station_date$stop_date)
+
+#Join the date_station table to the num_in_station_date table
+trips_in <- date_station %>%
+  left_join(num_in_station_date, by = c("start station name" = "end station name", "trip_date" = "stop_date"))
+
+#Replacing NA values with zeros
+trips_in$n <- trips_in$n %>% replace_na(0)
+
+#A glimpse at the trips_in table
+head(trips_in)
+
+```
+
+Now, we combine the trips_in and trips_out tables and create a summary table that also shows the overall balance per station per date:
+
+```{r}
+summary_balance <- trips_in %>% 
+  left_join(trips_out, by = c("start station name", "trip_date"))
+
+names(summary_balance) <- c("station_name", "trip_date", "n_in", "n_out")
+
+summary_balance <- summary_balance %>%
+  mutate(balance = n_in - n_out)
+
+head(summary_balance)
+```
+
+There is one more condition to eliminate. There are instances where both n_in and n-out are zero, this happens because not all the stations in the **station** data set may be present in the **trip** data set for the month of Jan 2020. Therefore, a filtering needs to be done to remove these data points so that they do not impact the statistical analysis later.
+
+```{r}
+summary_balance <- summary_balance %>%
+  filter(n_in!=0 | n_out!=0)
+```
+
+It would be interesting to eventually see the balance distributions at a District level. Therefore, let's bring in the District names by using the **station** table and joining to the **summary_balance** table:
+
+```{r}
+summary_balance_1 <- summary_balance %>%
+  left_join(station, by = c("station_name" = 'Name')) %>%
+  select("station_name",  "trip_date", "n_in", "n_out", "balance", "District", "Total.docks") 
+```
+
+
+## Exploration of visualization methods
+
+This section is an exploration of the different visualizations that can be applied to the prepared data set. The objective of this section is to evaluate which are the most appropriate methods that could be utilized in the final Shiny application.
+
+### Balance Across Stations and Districts
+
+Let's find a good way to visualize the distribution of the balance across stations, starting with a boxplot:
+
+```{r}
+p <- ggplot(summary_balance_1) +
+  geom_boxplot(aes(x = station_name, y = balance),
+               outlier.size = 0.1)
+ggplotly(p)
+```
+
+From this visualization, one can roughly tell that the majority of the mean balances are at or near zero level, with a handful of extreme outliers. However, this boxplot visualization is so packed with information that it is messy & hard to read, even if it was interactive. Given the large number of stations in the data set, it seems to be more prudent to enable the user to analyze subsets of the data. From an macro perspective, let's take a look at whether looking at the distribution using histograms would be a better visualization.
+
+```{r}
+#Plotting a histogram using ggstatsplot
+gghistostats(data = summary_balance_1, x = balance)
+
+```
+
+This is a good visual to show us the distribution of the balance for all the stations across the month. We can already see a symmetric t distribution centered on a mean balance of 0.01. Now, let's look at density Plots:
+
+```{r}
+#Plotting a density plot
+ggplot(summary_balance_1, aes(balance, color = District))+
+  geom_density(na.rm = TRUE)
+
+
+#Faceting density plots by District
+ggplot(summary_balance_1, aes(balance))+
+  geom_density(na.rm = TRUE) +
+  facet_wrap(~District)
+```
+
+Both these views of density plot help us see that even across districts, the distributions are very similar. 
+
+Let us also look at the distributions across districts and stations:
+
+```{r}
+
+#Checking distribution across districts
+ggbetweenstats(data = summary_balance_1, 
+               x = District, 
+               y = balance)
+
+#Selecting three station names to compare side by side
+
+station_compare <- summary_balance_1 %>%
+  filter(station_name == "175 N Harvard St"| station_name == "191 Beacon St"| station_name == "30 Dane St")
+
+ggbetweenstats(data = station_compare, 
+               x = station_name, 
+               y = balance)
+
+```
+
+This would be a good set of plots for the application to give a top line summary of the balance distribution across Districts. This can also be applied to compare specific stations side by side as an interactive feature.
+
+Let us now look at what happens when the same visualizations are made interactive using ggplotly:
+
+```{r}
+
+#Distribution across districts - Interactive
+p2 <- ggbetweenstats(data = summary_balance_1, 
+               x = District, 
+               y = balance)
+
+ggplotly(p2)
+
+#Three station names to compare side by side - Interactive
+
+p3 <- ggbetweenstats(data = station_compare, 
+               x = station_name, 
+               y = balance)
+
+ggplotly(p3)
+
+```
+
+It can be observed that some of the statistical results are missing in the interactive version of the visualizations as compared to the static version. In this context, it would make more sense to use the static versions, because when comparing the balance across stations, the key statistical data that comes with the static plot makes a big difference to the user's understanding - like number of observations, mean, F score & confidence intervals. In this scenario, it would not be critically necessary to have interactivity to zoom into specific data points.
+
+### Balance per Station across the month
+
+Now, let's look at visualizing the trend of the balance across the month per station. For the purpose of testing the visualization, we will look at the station named **175 N Harvard St**:
+
+```{r}
+#Filter for a selected station, and plot a line graph
+
+harvard <- summary_balance %>%
+  filter(station_name == "175 N Harvard St")
+
+p <- ggplot(harvard) +
+  geom_line(aes(x = trip_date, y = balance)) + theme_light()
+
+ggplotly(p, dynamicTicks = TRUE) %>%
+  rangeslider() %>%
+  layout(hovermode = "x")
+```
+
+This interactive view will help the user to look into the data at a detailed level, looking at balance fluctuations at a station level across the month, days and hours using the range slider. We will include this feature into the application with full interactivity. Potentially, we can also look into having up to three stations balance data at this detailed level for the detail specific user to look into comparing balance across stations at a day/time level if required.
+
+Finally, let's look into whether histograms & density plots are helpful at a station level:
+
+```{r}
+#Creating a separate data set filtered for 191 Beacon Street station
+beacon <- summary_balance %>%
+  filter(station_name == "191 Beacon St")
+
+#Density plot for 191 Beacon Street station data
+ggplot(beacon, aes(balance)) +
+  geom_density(na.rm = TRUE)
+
+#Histogram for 191 Beacon Street station data
+gghistostats(data = beacon, x = balance)
+
+```
+
+This view of density plot & histogram per station is not very helpful to the user, as compared to the station comparison visualizations above. Therefore, this is not recommended to be used in the final application.
+
+
+## Reflections on visualization methods
+
+
+
+## Sketch of Proposed Visualization
+
+
+
+
+
+## References
+
+http://hselab.org/use-r-to-explore-station-balance-in-bike-share-systems-and-learn-a-little-dplyr-programming.html
+
+https://nycdatascience.com/blog/student-works/data-visualization-and-analysis-of-nice-ride/
+
+Dplyr reference site
+
+Tidyverse reference site
+
+Infer package links
+
+https://ggplot2.tidyverse.org/reference/geom_qq.html
+
+https://data.library.virginia.edu/understanding-q-q-plots/
+
+https://mse.redwoods.edu/darnold/math15/spring2013/R/Activities/AssessingNormality1.html
+
+https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#74
+
+https://plotly-r.com/improving-ggplotly.html
+
+https://rpubs.com/aaronsc32/games-howell-test
